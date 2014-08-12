@@ -1,0 +1,13 @@
+application/configs/application.ini
+public/foto/1397144857.jpg
+application/views/scripts/ders/index.phtml
+application/views/scripts/ders/detay.phtml
+application/model/TblDersler.php
+application/controllers/DersController.php
+application/test.sql
+application/layouts/scripts/layout.phtml
+application/controllers/IndexController.php
+application/layouts/scripts/layout.phtml
+application/test.sql
+/nbproject/private/
+/public/foto/
