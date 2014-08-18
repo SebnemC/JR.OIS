@@ -1,0 +1,19 @@
+<form enctype="multipart/form-data" action="/ders/kaydet" method="post">
+  <?php if(strlen($this->data['id'])):?>
+  <input type="hidden" name="id" value="<?php echo $this->data['id']?>">
+  <?php endif;?> 
+  <font color="green"><h3>DÜZENLE</h3></font>
+  <table class="table">
+    <tr class="success">
+      <td>Ders Kodu:</td>
+      <td><input type="text" id="adi" name="ders_kodu" value="<?php echo $this->data['ders_kodu']?> "></td>
+    </tr>
+    <tr>
+      <td>Ders Adı:</td>
+      <td><input type="text" name="ders_adi" value="<?php echo $this->data['ders_adi']?> "></td>
+    </tr>
+    
+  </table>
+   <td><button type="submit" class="btn btn-success btn-sm">TAMAM</button> </td>
+   <a href="/ders/sil/id/<?php echo $this->data['id'] ;?>"> SİL </a>
+</form>  

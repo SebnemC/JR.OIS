@@ -1,19 +1,24 @@
 <?php
 class Site_Controller_Action extends Zend_Controller_Action{
+protected $userSession;  
 public function init()
 {
-	
+  
+      $auth = Zend_Auth::getInstance();
+
+      if(!$auth->hasIdentity())
+        $this->_redirect("/login/index");
+
+     
     //sessionda mesaj varsa okuyup view'a aktar ve sessiondan sil...
-      $this->session = new Zend_Session_Namespace('genel');
- 
-      $this->view->bilgiMesaji=$this->session->bilgiMesaji;
-      $this->session->bilgiMesaji="";  
-      $this->view->hataMesaji=$this->session->hataMesaji;
-      $this->session->hataMesaji="";  
+      $this->userSession = new Zend_Session_Namespace('userSession');
+      $this->view->bilgiMesaji=$this->userSession->bilgiMesaji;     
+      $this->view->hataMesaji=$this->userSession->hataMesaji;
 }
 
 public function preDispatch()
 {
+  $this->userSession = new Zend_Session_Namespace('userSession');
   if ($this->userSession->grup_kodu!=1) 
   {
   	$acl=$this->userSession->acl;
@@ -22,9 +27,9 @@ public function preDispatch()
   	{
   		  try
          {
-            if (!$acl->isAllowed($this->userSession->grup_kodu,$this->_request->getControllerName(),$action)) 
+            if (!$acl->isAllowed($this->userSession->grup_kodu,$this->_request->getControllerName(),$this->_request->getActionName()))
             {
-              Ubit_Session::hataMesaji("Yetkiniz Yok!");
+              $this->userSession->hataMesaji="Yetkiniz yok!";
               $this->_redirect('/error/error');
             }
 
@@ -36,7 +41,7 @@ public function preDispatch()
   	}
    else  
     {
-      Ubit_Session::hataMesaji("Yetkiniz Yok!");
+      $this->userSession->hataMesaji="Yetkiniz yok?!";
       $this->_redirect('/error/error');
     } 
   }

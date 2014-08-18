@@ -42,6 +42,7 @@ try
       $select=$tblgrup->select()->where("kullanici_adi=?",$kullanici_adi);               
       $data=$tblgrup->fetchAll($select)->toArray();
       $kullanici=$data[0];
+      
       $ses= new Zend_Session_Namespace('userSession');
       $grup_kodu= $kullanici['grup_kodu'] ? $kullanici['grup_kodu'] : 4;
 
