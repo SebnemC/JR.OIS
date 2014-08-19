@@ -43,7 +43,7 @@
                     <span class="caret"></span>
                </button>
 
-               <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+               <ul class="dropdown-menu " role="menu" aria-labelledby="dropdownMenu1">
                    <?php foreach($menu as $j => $menuItem): ?>
                        <li role="presentation"><a role="menuitem" tabindex="<?php echo $j ?>" href="/<?php echo $menuItem['controller'].'/'.$menuItem['action'] ?>"><?php echo $menuItem['menu_adi'] ?></a></li>
                    <?php endforeach ?>
